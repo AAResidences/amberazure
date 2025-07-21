@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // === SŁOWNIK TŁUMACZEŃ ===
     const translations = {
         pl: {
+            pageTitle: 'Amber & Azure Residences | Luksusowe Apartamenty w Sea & Forest',
             logo: 'Amber & Azure Residences',
             navPhilosophy: 'Filozofia',
             navApartments: 'Apartamenty',
-            navAmberCalendar: 'Kalendarz Amber',
+            // navAmberCalendar: 'Kalendarz Amber', // Usunięto
             navAzureCalendar: 'Kalendarz Azure',
             navAmenities: 'Udogodnienia',
             navAttractions: 'Atrakcje',
@@ -14,19 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
             videoError: 'Twoja przeglądarka nie obsługuje wideo w tle.',
             heroTitle: 'Amber & Azure Residences',
             heroSubtitle: 'Twoja Przystań, Gdzie Las Całuje Morze',
-            heroCta: 'Odkryj Apartamenty',
+            heroCta: 'Poznaj Nasze Apartamenty',
             philosophyTitle: 'Prawdziwy luksus to czas i przestrzeń.',
             philosophySubtitle: 'W Amber & Azure Residences wierzymy, że autentyczny odpoczynek rodzi się z harmonii z naturą. Stworzyliśmy dwa wyjątkowe apartamenty w sercu kompleksu Sea & Forest, które pozwalają zwolnić, odetchnąć i na nowo połączyć się ze sobą i z otoczeniem.',
             introText: 'Jako nasi Goście, otrzymujecie klucze nie tylko do luksusowego wnętrza, ale także do bogactwa udogodnień całego resortu, wkomponowanego w malowniczą otulinę Wolińskiego Parku Narodowego. To zaproszenie do doświadczania, odczuwania i czerpania z natury pełnymi garściami.',
             apartmentsMainTitle: 'Twoje Prywatne Apartamenty',
             apartmentsMainSubtitle: 'Każdy z naszych apartamentów to unikalna historia opowiedziana przez design, komfort i bliskość natury. Wybierz swoją idealną przestrzeň do relaksu.',
-            amberTitle: 'Apartament Amber Suite',
-            amberDesc: 'Wejdź do świata ciepła i elegancji inspirowanej bursztynem. Apartament o powierzchni 37 m² został zaprojektowany z myślą o Gościach ceniących sobie przytulny luksus i atmosferę domowego ciepła. To idealne miejsce na relaks po dniu pełnym wrażeń, z kojącym widokiem na las Wolińskiego Parku Narodowego bezpośrednio z Twojego prywatnego, 15-metrowego tarasu.',
-            amberDetail1: '<b>Salon:</b> Wygodna, rozkładana sofa, nowoczesny TV i duża ława dopełniają strefę wypoczynku.',
-            amberDetail2: '<b>Aneks Kuchenny:</b> W pełni wyposażony, z elegancką wyspą i hokerami, idealny do wspólnych śniadań.',
-            amberDetail3: '<b>Sypialnia:</b> Intymna oaza z podwójnym łóżkiem (160x200 cm) i osobnym telewizorem.',
-            amberDetail4: '<b>Taras:</b> Ogromny, 15-metrowy, umeblowany taras z kojącym widokiem na Wolińskiego Parku Narodowego.',
-            amberDetail5: '<b>Klimatyzacja:</b> Pełen komfort termiczny w obu pomieszczeniach.',
+            
+            // Nowe tłumaczenia dla sekcji "Amber wkrótce dostępny"
+            amberSoonTitle: 'Apartament Amber Suite - Wkrótce Dostępny!',
+            amberSoonDesc: 'Z niecierpliwością oczekujemy na ponowne otwarcie Apartamentu Amber Suite, który wkrótce będzie gotowy, aby ponownie gościć Państwa w swoich progach. Ten wyjątkowy apartament, inspirowany ciepłem bursztynu, oferuje niezapomniane wrażenia z pobytu w sercu Wolińskiego Parku Narodowego. Idealny dla tych, którzy cenią sobie przytulny luksus i bliskość natury.',
+            amberSoonContact: 'Chcesz być pierwszym, który dowie się o dostępności i specjalnych ofertach? Skontaktuj się z nami już dziś, aby wyrazić swoje zainteresowanie i otrzymać powiadomienie o otwarciu rezerwacji!',
+
+            // Usunięto amberTitle, amberDesc, amberDetail1-5
             azureTitle: 'Apartament Azure Suite',
             azureDesc: 'Zanurz się w klasycznej elegancji połączonej z nowoczesną funkcjonalnością. Apartament Azure o powierzchni 37 m² to przestrzeń, która otula i pozwala w pełni cieszyć się każdą chwilą pobytu. Jasne, przestronne wnętrza i starannie dobrane dodatki tworzą atmosferę spokoju, a imponujący, 15-metrowy taras z widokiem na las jest idealnym miejscem na poranną kawę i wieczorny relaks.',
             azureDetail1: '<b>Salon:</b> Przestronny i jasny, z komfortową sofą, eleganckim stolikiem kawowym i nowoczesnym TV.',
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             attraction1Title: 'Plaża na Wyciągnięcie Ręki',
             attraction1Desc: 'Na piękną, szeroką plażę dotrzesz malowniczym spacerem przez las lub korzystając z komfortowego, cichego busika elektrycznego.',
             attraction2Title: 'Woliński Park Narodowy',
-            attraction2Desc: 'Ruszaj na szlaki prosto z apartamentu. Czekają na Ciebie klif Gosań, Jezioro Turkusowe oraz Zagroda Pokazowa Żubrów.',
+            attraction2Desc: 'Ruszaj na szlaki prosto z apartamentu. Czekają na Ciebie klif Gosaň, Jezioro Turkusowe oraz Zagroda Pokazowa Żubrów.',
             attraction3Title: 'Uroki Międzyzdrojów',
             attraction3Desc: 'Spaceruj słynną Aleją Gwiazd, wejdź na 395-metrowe molo, odwiedź Oceanarium i Gabinet Figur Woskowych.',
             infoTitle: 'Informacje praktyczne',
@@ -140,10 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
             privacyS8P3: 'Niniejsza Polityka obowiązuje od dnia 16.07.2025 r.',
         },
         en: {
+            pageTitle: 'Amber & Azure Residences | Luxury Apartments in Sea & Forest',
             logo: 'Amber & Azure Residences',
             navPhilosophy: 'Philosophy',
             navApartments: 'Apartments',
-            navAmberCalendar: 'Amber Calendar',
+            // navAmberCalendar: 'Amber Calendar', // Removed
             navAzureCalendar: 'Azure Calendar',
             navAmenities: 'Amenities',
             navAttractions: 'Attractions',
@@ -157,13 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
             introText: 'As our Guests, you receive keys not only to a luxurious interior but also to the wealth of amenities of the entire resort, nestled in the picturesque buffer zone of the Woliński National Park. This is an invitation to experience, feel, and draw from nature to the fullest.',
             apartmentsMainTitle: 'Your Private Apartments',
             apartmentsMainSubtitle: 'Each of our apartments tells a unique story through design, comfort, and closeness to nature. Choose your ideal space for relaxation.',
-            amberTitle: 'Amber Suite Apartment',
-            amberDesc: 'Step into a world of warmth and elegance inspired by amber. This 37 m² apartment is designed for guests who appreciate cozy luxury and a homely atmosphere. It is the perfect place to relax after a day full of impressions, with a soothing view of the Woliński National Park forest directly from your private, 15-square-meter terrace.',
-            amberDetail1: '<b>Living Room:</b> A comfortable sofa bed, modern TV, and a large coffee table complete the relaxation area.',
-            amberDetail2: '<b>Kitchenette:</b> Fully equipped, with an elegant island and bar stools, perfect for shared breakfasts.',
-            amberDetail3: '<b>Bedroom:</b> An intimate oasis with a double bed (160x200 cm) and a separate television.',
-            amberDetail4: '<b>Terrace:</b> A huge, 15-square-meter furnished terrace with a soothing view of the Woliński National Park.',
-            amberDetail5: '<b>Air Conditioning:</b> Full thermal comfort in both rooms.',
+            
+            // New translations for "Amber coming soon" section
+            amberSoonTitle: 'Amber Suite Apartment - Coming Soon!',
+            amberSoonDesc: 'We are eagerly awaiting the reopening of the Amber Suite Apartment, which will soon be ready to welcome you again. This unique apartment, inspired by the warmth of amber, offers an unforgettable stay in the heart of the Woliński National Park. Perfect for those who appreciate cozy luxury and proximity to nature.',
+            amberSoonContact: 'Want to be the first to know about availability and special offers? Contact us today to express your interest and receive a notification when bookings open!',
+
+            // Removed amberTitle, amberDesc, amberDetail1-5
             azureTitle: 'Azure Suite Apartment',
             azureDesc: 'Immerse yourself in classic elegance combined with modern functionality. The 37 m² Azure apartment is a space that envelops and allows you to fully enjoy every moment of your stay. Bright, spacious interiors and carefully selected accessories create an atmosphere of peace, and the impressive, 15-square-meter terrace with a forest view is the perfect place for a morning coffee and evening relaxation.',
             azureDetail1: '<b>Living Room:</b> Spacious and bright, with a comfortable sofa, an elegant coffee table, and a modern TV.',
@@ -219,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             privacyLastUpdated: 'Last updated: 16.07.2025',
             privacyS1Title: '§1 General Provisions',
             privacyS1P1: 'This privacy policy (hereinafter referred to as the "Policy") is for informational purposes and defines the rules for processing personal data and using cookies on the website available at: https://aaresidences.github.io/amberazure/ (hereinafter referred to as the "Service").',
-            privacyS1P2: 'We care about your privacy and the security of your personal data, processing it in accordance with the requirements of Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation), hereinafter referred to as "GDPR".',
+            privacyS1P2: 'We care about your privacy and the security of your personal data, processing it in accordance with the requirements of Regulation (EU) 20gal: 16/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation), hereinafter referred to as "GDPR".',
             privacyS2Title: '§2 Personal Data Administrator',
             privacyS2P1: 'The administrator of your personal data is MTM Dariusz Seferyński, conducting business activity at: ul. Księcia Józefa Poniatowskiego 11, 05-230 Kobyłka (hereinafter referred to as the "Administrator").',
             privacyS2P2: 'In all matters related to the processing of personal data and the exercise of your rights, you can contact the Administrator:',
@@ -272,10 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
             privacyS8P3: 'This Policy is effective from 16.07.2025.',
         },
         de: {
+            pageTitle: 'Amber & Azure Residences | Luxusapartments in Sea & Forest',
             logo: 'Amber & Azure Residences',
             navPhilosophy: 'Philosophie',
             navApartments: 'Apartments',
-            navAmberCalendar: 'Amber Kalender',
+            // navAmberCalendar: 'Amber Kalender', // Entfernt
             navAzureCalendar: 'Azure Kalender',
             navAmenities: 'Annehmlichkeiten',
             navAttractions: 'Attraktionen',
@@ -289,13 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
             introText: 'Als unsere Gäste erhalten Sie nicht nur die Schlüssel zu einem luxuriösen Interieur, sondern auch zum Reichtum der Annehmlichkeiten des gesamten Resorts, eingebettet in die malerische Pufferzone des Nationalparks Wolin. Dies ist eine Einladung, die Natur in vollen Zügen zu erleben, zu fühlen und zu genießen.',
             apartmentsMainTitle: 'Ihre privaten Suiten',
             apartmentsMainSubtitle: 'Jedes unserer Apartments erzählt eine einzigartige Geschichte durch Design, Komfort und Naturverbundenheit. Wählen Sie Ihren idealen Ort zur Entspannung.',
-            amberTitle: 'Amber Suite Apartment',
-            amberDesc: 'Treten Sie ein in eine Welt der Wärme und Eleganz, inspiriert von Bernstein. Dieses 37 m² große Apartment wurde für Gäste entworfen, die gemütlichen Luxus und eine heimelige Atmosphäre schätzen. Es ist der perfekte Ort, um nach einem erlebnisreichen Tag zu entspannen, mit einem beruhigenden Blick auf den Wald des Nationalparks Wolin direkt von Ihrer privaten, 15 Quadratmeter großen Terrasse.',
-            amberDetail1: '<b>Wohnzimmer:</b> Ein bequemes Schlafsofa, ein moderner Fernseher und ein großer Couchtisch vervollständigen den Entspannungsbereich.',
-            amberDetail2: '<b>Küchenzeile:</b> Voll ausgestattet, mit einer eleganten Insel und Barhockern, ideal für gemeinsame Frühstücke.',
-            amberDetail3: '<b>Schlafzimmer:</b> Eine intime Oase mit einem Doppelbett (160x200 cm) und einem separaten Fernseher.',
-            amberDetail4: '<b>Terrasse:</b> Eine riesige, 15 Quadratmeter große möblierte Terrasse mit beruhigendem Blick auf den Nationalpark Wolin.',
-            amberDetail5: '<b>Klimaanlage:</b> Voller thermischer Komfort in beiden Zimmern.',
+            
+            // Neue Übersetzungen für den Bereich "Amber bald verfügbar"
+            amberSoonTitle: 'Amber Suite Apartment - Bald verfügbar!',
+            amberSoonDesc: 'Wir freuen uns auf die Wiedereröffnung des Amber Suite Apartments, das bald wieder bereit sein wird, Sie in seinen Räumen willkommen zu heißen. Dieses einzigartige Apartment, inspiriert von der Wärme des Bernsteins, bietet ein unvergessliches Aufenthaltserlebnis im Herzen des Nationalparks Wolin. Ideal für alle, die gemütlichen Luxus und die Nähe zur Natur schätzen.',
+            amberSoonContact: 'Möchten Sie als Erster über Verfügbarkeit und Sonderangebote informiert werden? Kontaktieren Sie uns noch heute, um Ihr Interesse zu bekunden und eine Benachrichtigung zu erhalten, wenn die Buchungen geöffnet werden!',
+
+            // Entfernt amberTitle, amberDesc, amberDetail1-5
             azureTitle: 'Azure Suite Apartment',
             azureDesc: 'Tauchen Sie ein in klassische Eleganz, kombiniert mit moderner Funktionalität. Das 37 m² große Azure-Apartment ist ein Raum, der Sie umhüllt und Sie jeden Moment Ihres Aufenthalts genießen lässt. Helle, geräumige Innenräume und sorgfältig ausgewählte Accessoires schaffen eine Atmosphäre der Ruhe, und die beeindruckende, 15 Quadratmeter große Terrasse mit Waldblick ist der perfekte Ort für einen Morgenkaffee und abendliche Entspannung.',
             azureDetail1: '<b>Wohnzimmer:</b> Geräumig und hell, mit einem bequemen Sofa, einem eleganten Couchtisch und einem modernen Fernseher.',
@@ -340,6 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
             contactBtnCallBeata: 'Beata: +48 606 410 041',
             footerRights: '© 2025 Amber & Azure Residences. Alle Rechte vorbehalten.',
             footerPrivacy: 'Datenschutz-Bestimmungen',
+            cookieTitle: 'We value your privacy', cookieText: 'We use cookies to personalize content, provide social media features, and analyze our traffic. We also share information about your use of our site with our partners.', cookieDeny: 'Deny', cookieCustomize: 'Customize', cookieAccept: 'Allow all',
+            cookieDetailsTitle: 'Customize consent', cookieNecessaryDesc: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
+            cookieAnalyticsDesc: 'These cookies allow us to analyze site traffic and improve its performance.',
+            cookieMarketingDesc: 'These cookies help us deliver personalized ads that may be of interest to you.',
+            cookieSave: 'Save settings',
 
             // Privacy Policy Translations
             privacyTitle: 'Datenschutz- und Cookie-Richtlinie der Amber & Azure Residences Website',
@@ -541,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // === NOWA LOGIKA GALERII (BEZ ZEWNĘTRZNYCH BIBLIOTEK) ===
+    // Funkcja initializeGallery jest teraz używana tylko dla Azure Suite
     function initializeGallery(suiteId) {
         const gallery = document.getElementById(suiteId);
         if (!gallery) return;
@@ -587,8 +596,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // === Logika ładowania kalendarzy (Poprawka dla Safari) ===
+    // Funkcja loadCalendars jest teraz używana tylko dla Azure Suite
     function loadCalendars() {
-        const calendarWrappers = document.querySelectorAll('.calendar-wrapper');
+        // Pobieramy tylko kalendarz Azure
+        const azureCalendarWrapper = document.getElementById('azure-calendar-wrapper');
+        const calendarWrappers = azureCalendarWrapper ? [azureCalendarWrapper] : [];
         
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries, observer) => {
@@ -655,11 +667,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Inicjalizacja obu galerii
-    initializeGallery('amber-suite');
+    // Inicjalizacja galerii tylko dla Azure
     initializeGallery('azure-suite');
 
-    // Ładowanie kalendarzy
+    // Ładowanie kalendarzy tylko dla Azure
     loadCalendars();
 
 
