@@ -672,22 +672,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // === Logika Galerii ===
-    function initializeGallery(suiteId) {
+    function initializeGallery(suiteId, images) {
         const gallery = document.getElementById(suiteId);
         if (!gallery) return;
 
         const mainImage = gallery.querySelector('.gallery-main-image img');
         const thumbnailsContainer = gallery.querySelector('.thumbnail-scroll-container');
+        
+        // Wyczyść istniejące miniaturki
+        thumbnailsContainer.innerHTML = '';
+
+        // Wygeneruj nowe miniaturki
+        images.forEach((img, index) => {
+            const thumbItem = document.createElement('div');
+            thumbItem.classList.add('thumbnail-item');
+            if (index === 0) {
+                thumbItem.classList.add('active-thumb');
+            }
+            thumbItem.dataset.image = img.url;
+            
+            const thumbImg = document.createElement('img');
+            thumbImg.src = img.url;
+            thumbImg.alt = `Miniatura: ${img.alt}`;
+            
+            thumbItem.appendChild(thumbImg);
+            thumbnailsContainer.appendChild(thumbItem);
+        });
+
         const thumbnails = gallery.querySelectorAll('.thumbnail-item');
         const scrollLeftBtn = gallery.querySelector('.scroll-arrow.left');
         const scrollRightBtn = gallery.querySelector('.scroll-arrow.right');
 
-        if (!mainImage || !thumbnailsContainer || thumbnails.length === 0) return;
+        if (!mainImage || thumbnails.length === 0) return;
+
+        // Ustaw pierwsze zdjęcie jako główne
+        mainImage.src = images[0].url;
+        mainImage.alt = images[0].alt;
 
         // Click to change image
         thumbnails.forEach(thumb => {
             thumb.addEventListener('click', function(e) {
-                // Prevent drag from triggering click
                 if(thumbnailsContainer.dataset.dragged === 'true') {
                     e.preventDefault();
                     return;
@@ -698,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainImage.style.opacity = '0';
                 setTimeout(() => {
                     mainImage.src = newImageSrc;
-                    mainImage.alt = this.querySelector('img').alt.replace('Miniatura', 'Widok na');
+                    mainImage.alt = this.querySelector('img').alt.replace('Miniatura: ', '');
                     mainImage.style.opacity = '1';
                 }, 300);
             });
@@ -731,7 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbnailsContainer.addEventListener('mouseup', () => {
             isDown = false;
             thumbnailsContainer.classList.remove('grabbing');
-            // Use a timeout to reset dragged state, allowing click to process
             setTimeout(() => {
                 thumbnailsContainer.dataset.dragged = 'false';
             }, 0);
@@ -741,8 +764,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - thumbnailsContainer.offsetLeft;
-            const walk = (x - startX) * 2; //scroll-fast
-            if (Math.abs(walk) > 10) { // Threshold to detect drag
+            const walk = (x - startX) * 2;
+            if (Math.abs(walk) > 10) {
                  thumbnailsContainer.dataset.dragged = 'true';
             }
             thumbnailsContainer.scrollLeft = scrollLeft - walk;
@@ -771,8 +794,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
             const accordionItem = header.parentElement;
-            const accordionContent = header.nextElementSibling;
-            
             if (accordionItem.classList.contains('active')) {
                 accordionItem.classList.remove('active');
             } else {
@@ -807,9 +828,226 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // === DANE GALERII I PANEL ADMINISTRATORA ===
+    const defaultAzureImages = [
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0091.jpeg', alt: 'Salon z widokiem na taras' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0095.jpeg', alt: 'Widok na salon i aneks kuchenny' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0104.jpeg', alt: 'Część wypoczynkowa w salonie' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0105.jpeg', alt: 'Szczegóły dekoracji w salonie' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0112.jpeg', alt: 'Telewizor i szafka RTV' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0198.jpeg', alt: 'Stolik kawowy z dekoracją' },
+        { url: 'https://aaresidences.github.io/amberazure/salon/IMG-20250718-WA0201.jpeg', alt: 'Wygodna sofa w salonie' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0041.jpeg', alt: 'Sypialnia z dużym łóżkiem' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0043.jpeg', alt: 'Widok na łóżko i szafę' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0044.jpeg', alt: 'Szafa w sypialni' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0045.jpeg', alt: 'Dekoracje w sypialni' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0046.jpeg', alt: 'Lampka nocna przy łóżku' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0047.jpeg', alt: 'Wygodne łóżko małżeńskie' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0048.jpeg', alt: 'Telewizor w sypialni' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0049.jpeg', alt: 'Widok z sypialni na taras' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0050.jpeg', alt: 'Sypialnia z zasłoniętymi oknami' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0070.jpeg', alt: 'Szafa i przejście do salonu' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0113.jpeg', alt: 'Szczegóły wyposażenia sypialni' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0139.jpeg', alt: 'Sypialnia w dziennym świetle' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0140.jpeg', alt: 'Dekoracyjna poduszka na łóżku' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0142.jpeg', alt: 'Szafka nocna' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0146.jpeg', alt: 'Klimatyzator w sypialni' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0147.jpeg', alt: 'Widok na sypialnię' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0150.jpeg', alt: 'Sypialnia z otwartymi drzwiami na taras' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0152.jpeg', alt: 'Ogólny widok na sypialnię' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0173.jpeg', alt: 'Szafa wnękowa' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0176.jpeg', alt: 'Wnętrze szafy' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0208.jpeg', alt: 'Dekoracje ścienne' },
+        { url: 'https://aaresidences.github.io/amberazure/sypialnia/IMG-20250718-WA0209.jpeg', alt: 'Widok na pościelone łóżko' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0033.jpeg', alt: 'Aneks kuchenny' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0034.jpeg', alt: 'Wyposażenie aneksu kuchennego' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0035.jpeg', alt: 'Zastawa stołowa' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0036.jpeg', alt: 'Sztućce i akcesoria kuchenne' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0038.jpeg', alt: 'Ekspres do kawy' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0039.jpeg', alt: 'Czajnik i toster' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0040.jpeg', alt: 'Płyta indukcyjna' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0168.jpeg', alt: 'Zmywarka' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0169.jpeg', alt: 'Szafki kuchenne' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0170.jpeg', alt: 'Kieliszki do wina' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0171.jpeg', alt: 'Szklanki i kubki' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0179.jpeg', alt: 'Stół jadalniany' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0180.jpeg', alt: 'Krzesła przy stole' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0181.jpeg', alt: 'Dekoracja na stole' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0182.jpeg', alt: 'Widok na część jadalnianą' },
+        { url: 'https://aaresidences.github.io/amberazure/kuchnia/IMG-20250718-WA0197.jpeg', alt: 'Lodówka' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0065.jpeg', alt: 'Nowoczesna łazienka' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0066.jpeg', alt: 'Prysznic typu walk-in' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0080.jpeg', alt: 'Umywalka z lustrem' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0081.jpeg', alt: 'Toaleta' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0088.jpeg', alt: 'Ręczniki i akcesoria łazienkowe' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0115.jpeg', alt: 'Pralka w łazience' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0129.jpeg', alt: 'Szczegóły wykończenia łazienki' },
+        { url: 'https://aaresidences.github.io/amberazure/lazienka/IMG-20250718-WA0135.jpeg', alt: 'Oświetlenie w łazience' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250716-WA0041.jpeg', alt: 'Taras z widokiem na las' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0057.jpeg', alt: 'Meble tarasowe' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0059.jpeg', alt: 'Widok z tarasu' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0061.jpeg', alt: 'Poranna kawa na tarasie' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0076.jpeg', alt: 'Relaks na tarasie' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0094.jpeg', alt: 'Taras w słońcu' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0096.jpeg', alt: 'Stolik na tarasie' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0097.jpeg', alt: 'Widok na otoczenie z tarasu' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0185.jpeg', alt: 'Taras wieczorową porą' },
+        { url: 'https://aaresidences.github.io/amberazure/taras/IMG-20250718-WA0187.jpeg', alt: 'Szczegóły tarasu' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250716-WA0026.jpeg', alt: 'Budynek resortu' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250716-WA0029.jpeg', alt: 'Wejście do resortu' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250716-WA0041.jpeg', alt: 'Basen zewnętrzny' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250716-WA0062.jpeg', alt: 'Tereny zielone resortu' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0006.jpeg', alt: 'Lobby resortu' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0009.jpeg', alt: 'Restauracja w resorcie' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0015.jpeg', alt: 'Strefa wellness' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0020.jpeg', alt: 'Jacuzzi' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0025.jpeg', alt: 'Sauna' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0027.jpeg', alt: 'Siłownia' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0035.jpeg', alt: 'Plac zabaw dla dzieci' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0040.jpeg', alt: 'Sala zabaw dla dzieci' },
+        { url: 'https://aaresidences.github.io/amberazure/resort/IMG-20250719-WA0046.jpeg', alt: 'Basen wewnętrzny' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0129.jpeg', alt: 'Plaża w Międzyzdrojach' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0131.jpeg', alt: 'Molo w Międzyzdrojach' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0144.jpeg', alt: 'Promenada Gwiazd' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0164.jpeg', alt: 'Zachód słońca nad morzem' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0173.jpeg', alt: 'Klify Wolińskiego Parku Narodowego' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0177.jpeg', alt: 'Statek na morzu' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0191.jpeg', alt: 'Atrakcje w Międzyzdrojach' },
+        { url: 'https://aaresidences.github.io/amberazure/miedzyzdroje/IMG-20250716-WA0206.jpeg', alt: 'Urokliwe uliczki Międzyzdrojów' },
+    ];
+
+    let azureImages = JSON.parse(localStorage.getItem('azureGalleryImages')) || defaultAzureImages;
+
+    function saveAzureImages() {
+        localStorage.setItem('azureGalleryImages', JSON.stringify(azureImages));
+    }
+
+    function renderGalleries() {
+        initializeGallery('azure-suite', azureImages);
+    }
+
     // === Inicjalizacja Aplikacji ===
-    initializeGallery('azure-suite');
-    
+    renderGalleries();
     const savedLang = localStorage.getItem('preferredLanguage') || 'pl';
     setLanguage(savedLang);
+    
+    // === PANEL ADMINISTRATORA ===
+    const adminPanel = document.getElementById('admin-panel');
+    let adminMode = false;
+
+    // Logika otwierania panelu
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.altKey && e.key === 'p') {
+            if (adminMode) {
+                adminPanel.classList.add('hidden');
+                adminMode = false;
+            } else {
+                const password = prompt('Podaj hasło, aby otworzyć panel administratora:');
+                if (password === 'admin2025') {
+                    adminPanel.classList.remove('hidden');
+                    adminMode = true;
+                    renderAdminPreviews();
+                } else {
+                    alert('Nieprawidłowe hasło.');
+                }
+            }
+        }
+    });
+
+    const adminPreviewsContainer = document.getElementById('azure-admin-previews');
+    const addPhotoBtn = document.getElementById('add-photo-btn');
+    const saveGalleryBtn = document.getElementById('save-gallery-btn');
+
+    function renderAdminPreviews() {
+        adminPreviewsContainer.innerHTML = '';
+        azureImages.forEach((img, index) => {
+            const previewItem = document.createElement('div');
+            previewItem.classList.add('admin-preview-item');
+            previewItem.dataset.index = index;
+            previewItem.draggable = true;
+
+            previewItem.innerHTML = `
+                <img src="${img.url}" alt="${img.alt}">
+                <button class="delete-btn" data-index="${index}">&times;</button>
+            `;
+            adminPreviewsContainer.appendChild(previewItem);
+        });
+    }
+
+    addPhotoBtn.addEventListener('click', () => {
+        const urlInput = document.getElementById('photo-url');
+        const altInput = document.getElementById('photo-alt');
+        const url = urlInput.value.trim();
+        const alt = altInput.value.trim();
+
+        if (url && alt) {
+            azureImages.push({ url, alt });
+            renderAdminPreviews();
+            urlInput.value = '';
+            altInput.value = '';
+        } else {
+            alert('Proszę wypełnić oba pola: URL i opis zdjęcia.');
+        }
+    });
+
+    adminPreviewsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete-btn')) {
+            const index = parseInt(e.target.dataset.index, 10);
+            azureImages.splice(index, 1);
+            renderAdminPreviews();
+        }
+    });
+
+    saveGalleryBtn.addEventListener('click', () => {
+        // Zapisz nową kolejność
+        const newOrder = [];
+        const previews = adminPreviewsContainer.querySelectorAll('.admin-preview-item');
+        previews.forEach(preview => {
+            newOrder.push(azureImages[preview.dataset.index]);
+        });
+        azureImages = newOrder;
+        
+        saveAzureImages();
+        renderGalleries();
+        alert('Galeria została zaktualizowana!');
+        adminPanel.classList.add('hidden');
+        adminMode = false;
+    });
+
+    // Drag and Drop w panelu admina
+    let draggedItem = null;
+    adminPreviewsContainer.addEventListener('dragstart', (e) => {
+        draggedItem = e.target;
+        setTimeout(() => {
+            e.target.classList.add('dragging');
+        }, 0);
+    });
+
+    adminPreviewsContainer.addEventListener('dragend', (e) => {
+        e.target.classList.remove('dragging');
+    });
+
+    adminPreviewsContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(adminPreviewsContainer, e.clientY);
+        if (afterElement == null) {
+            adminPreviewsContainer.appendChild(draggedItem);
+        } else {
+            adminPreviewsContainer.insertBefore(draggedItem, afterElement);
+        }
+    });
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.admin-preview-item:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
 });
