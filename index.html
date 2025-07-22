@@ -1,400 +1,367 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO Meta Tags -->
-    <title data-key="pageTitle">Amber & Azure Residences | Luksusowe Apartamenty w Sea & Forest</title>
-    <meta name="description" content="Odkryj luksusowe apartamenty Amber & Azure w Międzyzdrojach. Twoja prywatna przystań w sercu kompleksu Sea & Forest, gdzie natura spotyka się z komfortem. Zarezerwuj pobyt." data-key="metaDescription">
-    <meta name="keywords" content="apartamenty Międzyzdroje, luksusowe apartamenty, wynajem apartamentów, Sea & Forest, Woliński Park Narodowy, Amber & Azure, noclegi Międzyzdroje" data-key="metaKeywords">
+/* === Zmienne (Paleta Kolorów i Fonty) === */
+:root {
+    --color-amber: #ffc107;
+    --color-azure: #007bff;
+    --color-dark-blue: #121c22;
+    --color-light-bg: #f8f9fa;
+    --color-text-light: #e9ecef;
+    --color-text-medium: #6c757d;
+    --color-white: #ffffff;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Playfair Display', serif;
+    --nav-height: 72px;
+    --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    --radius: 0.75rem;
+}
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* === Reset i Style Globalne === */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <header class="main-header">
-        <div class="container nav-container">
-            <a href="#hero" class="logo" data-key="logo">Amber & Azure <span class="logo-accent">Residences</span></a>
-            <div class="header-controls">
-                <div class="language-switcher">
-                    <img src="https://flagcdn.com/w40/pl.png" alt="Język Polski" data-lang="pl" class="lang-active">
-                    <img src="https://flagcdn.com/w40/gb.png" alt="English Language" data-lang="en">
-                    <img src="https://flagcdn.com/w40/de.png" alt="Deutsche Sprache" data-lang="de">
-                </div>
-                <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </header>
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
 
-    <nav class="nav-links" id="nav-links">
-        <a href="#filozofia" data-key="navPhilosophy">Filozofia</a>
-        <a href="#apartamenty" data-key="navApartments">Apartamenty</a>
-        <a href="#udogodnienia" data-key="navAmenities">Udogodnienia</a>
-        <a href="#kontakt" data-key="navContact">Kontakt</a>
-    </nav>
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-white);
+    color: var(--color-dark-blue);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
 
-    <main>
-        <section id="hero">
-            <video class="hero-video" autoplay loop muted playsinline poster="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-                <source src="https://paxon75.github.io/amber-azure_residences/header.mp4" type="video/mp4">
-                <span data-key="videoError">Twoja przeglądarka nie obsługuje wideo w tle.</span>
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1 data-key="heroTitle">Amber & Azure Residences</h1>
-                <p data-key="heroSubtitle">Twoja Przystań, Gdzie Las Całuje Morze</p>
-                <a href="#apartamenty" class="hero-cta" data-key="heroCta">Poznaj Nasze Apartamenty</a>
-            </div>
-        </section>
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--color-light-bg);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-azure);
+  border-radius: 20px;
+  border: 3px solid var(--color-light-bg);
+}
 
-        <section id="filozofia">
-             <div class="container">
-                <div class="intro-box">
-                    <h2 data-key="philosophyTitle">Prawdziwy luksus to czas i przestrzeň.</h2>
-                    <p class="section-subtitle" data-key="philosophySubtitle">W Amber & Azure Residences wierzymy, że autentyczny odpoczynek rodzi się z harmonii z naturą. Stworzyliśmy dwa wyjątkowe apartamenty w sercu kompleksu Sea & Forest, które pozwalają zwolnić, odetchnąć i na nowo połączyć się ze sobą i z otoczeniem.</p>
-                    <p class="intro-text" data-key="introText">Jako nasi Goście, otrzymujecie klucze nie tylko do luksusowego wnętrza, ale także do bogactwa udogodnień całego resortu, wkomponowanego w malowniczą otulinę Wolińskiego Parku Narodowego. To zaproszenie do doświadczania, odczuwania i czerpania z natury pełnymi garściami.</p>
-                </div>
-            </div>
-        </section>
 
-        <section id="apartamenty">
-            <div class="container">
-                <h2 data-key="apartmentsMainTitle">Twoje Prywatne Apartamenty</h2>
-                <p class="section-subtitle" data-key="apartmentsMainSubtitle">Każdy z naszych apartamentów to unikalna historia opowiedziana przez design, komfort i bliskość natury. Wybierz swoją idealną przestrzeň do relaksu.</p>
-                
-                <article class="suite-showcase" id="azure-suite">
-                    <header class="suite-header">
-                        <h3 class="suite-title" data-key="azureTitle">Apartament Azure Suite</h3>
-                    </header>
-                    <p class="suite-main-description" data-key="azureDesc">Zanurz się w klasycznej elegancji połączonej z nowoczesną funkcjonalnością. Apartament Azure o powierzchni 37 m² to przestrzeń, która otula i pozwala w pełni cieszyć się każdą chwilą pobytu. Jasne, przestronne wnętrza i starannie dobrane dodatki tworzą atmosferę spokoju, a imponujący, 15-metrowy taras z widokiem na las jest idealnym miejscem na poranną kawę i wieczorny relaks.</p>
-                     <div class="suite-body">
-                        <div class="gallery-container">
-                            <div class="gallery-main-image">
-                                <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800&h=600" alt="Elegancki salon w Apartamencie Azure Suite" id="azure-main-img">
-                            </div>
-                            <div class="thumbnail-scroll-wrapper">
-                                <button class="scroll-arrow left" aria-label="Previous image">&lt;</button>
-                                <div class="thumbnail-scroll-container">
-                                    <div class="thumbnail-item active-thumb" data-image="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura salonu"></div>
-                                    <div class="thumbnail-item" data-image="https://images.pexels.com/photos/6492397/pexels-photo-6492397.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/6492397/pexels-photo-6492397.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura sypialni"></div>
-                                    <div class="thumbnail-item" data-image="https://images.pexels.com/photos/6585620/pexels-photo-6585620.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/6585620/pexels-photo-6585620.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura aneksu kuchennego"></div>
-                                    <div class="thumbnail-item" data-image="https://images.pexels.com/photos/6434623/pexels-photo-6434623.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/6434623/pexels-photo-6434623.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura łazienki"></div>
-                                    <div class="thumbnail-item" data-image="https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura części jadalnianej"></div>
-                                    <div class="thumbnail-item" data-image="https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=800&h=600"><img src="https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=150&h=100" alt="Miniatura tarasu z widokiem na las"></div>
-                                </div>
-                                <button class="scroll-arrow right" aria-label="Next image">&gt;</button>
-                            </div>
-                        </div>
-                        <div class="suite-content">
-                            <ul class="suite-details-list">
-                                <li><i class="fas fa-couch"></i><span data-key="azureDetail1"><b>Salon:</b> Przestronny i jasny, z komfortową sofą, eleganckim stolikiem kawowym i nowoczesnym TV.</span></li>
-                                <li><i class="fas fa-utensils"></i><span data-key="azureDetail2"><b>Aneks Kuchenny:</b> Pełna swoboda i niezależność dzięki nowoczesnej płycie, zmywarce i kompletnemu wyposażeniu.</span></li>
-                                <li><i class="fas fa-chair"></i><span data-key="azureDetail3"><b>Część jadalniana:</b> Piękny, okrągły stół z krzesłami tworzy przytulny kącik do wspólnych posiłków.</span></li>
-                                <li><i class="fas fa-bed"></i><span data-key="azureDetail4"><b>Sypialnia:</b> Luksusowe, podwójne łóżko (160x200 cm) i osobny telewizor dla pełnego relaksu.</span></li>
-                                <li><i class="fas fa-tree"></i><span data-key="azureDetail5"><b>Taras:</b> Imponujący, 15-metrowy taras z widokiem na las, dostępny z obu pokoi.</span></li>
-                                <li><i class="fas fa-wind"></i><span data-key="azureDetail6"><b>Klimatyzacja:</b> Indywidualnie sterowana dla idealnej temperatury o każdej porze roku.</span></li>
-                                <li><i class="fas fa-wifi"></i><span data-key="wifi"><b>Internet:</b> Szybkie, darmowe Wi-Fi dostępne w całym apartamencie.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    letter-spacing: -0.5px;
+    text-wrap: balance;
+}
 
-                <article class="suite-showcase amber-soon-available" id="amber-suite">
-                    <header class="suite-header">
-                        <h3 class="suite-title" data-key="amberSoonTitle">Apartament Amber Suite – Wkrótce Dostępny!</h3>
-                    </header>
-                    <div class="suite-body">
-                        <div class="gallery-container">
-                             <div class="gallery-main-image">
-                                <img src="https://paxon75.github.io/amber-azure_residences/klucz.jpg" alt="Klucze do apartamentu Amber Suite">
-                            </div>
-                        </div>
-                        <div class="suite-content amber-soon-content">
-                            <p data-key="amberSoonDesc">Ten zupełnie nowy, wyjątkowy apartament, inspirowany ciepłem bursztynu, czeka, aby gościć Państwa w swoich progach. Oferuje niezapomniane wrażenia z pobytu w sercu Wolińskiego Parku Narodowego. Idealny dla tych, którzy cenią sobie przytulny luksus i bliskość natury.</p>
-                            <p data-key="amberSoonContact">Przygotuj się na swój wymarzony pobyt! Skontaktuj się z nami, aby dowiedzieć się więcej o terminach dostępności i rezerwacji.</p>
-                            <a href="#kontakt" class="btn-amber-contact" data-key="amberContactBtn">Sprawdź Dostępność i Zarezerwuj</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
+h2 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
 
-        <section id="udogodnienia">
-            <div class="container">
-                <h2 data-key="detailedInfoMainTitle">Szczegółowe Informacje i Udogodnienia</h2>
-                <p class="section-subtitle" data-key="detailedInfoMainSubtitle">Wszystko, co musisz wiedzieć o Twoim pobycie w Sea & Forest Resort.</p>
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-medium);
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+    text-align: center;
+    line-height: 1.8;
+    text-wrap: balance;
+}
 
-                <div class="accordion-container">
-                    <!-- Wyżywienie -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <div class="accordion-title-wrapper"><i class="fas fa-utensils accordion-icon-title"></i><h3 data-key="mealsTitle">Wyżywienie</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p data-key="mealsDesc" class="accordion-text-description"></p>
-                                <h4 data-key="foodFeaturesTitle"></h4>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-leaf"></i><span data-key="foodFeature1"></span></li>
-                                    <li><i class="fas fa-fish"></i><span data-key="foodFeature2"></span></li>
-                                    <li><i class="fas fa-sun"></i><span data-key="foodFeature3"></span></li>
-                                    <li><i class="fas fa-hourglass-half"></i><span data-key="foodFeature4"></span></li>
-                                </ul>
-                                <h4 data-key="restaurantHoursTitle"></h4>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-utensils"></i><span data-key="restaurantHours"></span></li>
-                                    <li><i class="fas fa-coffee"></i><span data-key="lobbyBarHours"></span></li>
-                                    <li><i class="fas fa-shopping-bag"></i><span data-key="takeawaySnacks"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
 
-                    <!-- Sport i rozrywka -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <div class="accordion-title-wrapper"><i class="fas fa-running accordion-icon-title"></i><h3 data-key="sportEntertainmentTitle">Sport i rozrywka</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                             <div class="accordion-content-inner">
-                                <p data-key="sportEntertainmentSubtitle" class="accordion-text-description"></p>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-bus"></i><span data-key="sportEntertainment1"></span></li>
-                                    <li><i class="fas fa-biking"></i><span data-key="sportEntertainment2"></span></li>
-                                    <li><i class="fas fa-dumbbell"></i><span data-key="sportEntertainment3"></span></li>
-                                    <li><i class="fas fa-music"></i><span data-key="sportEntertainment4"></span></li>
-                                    <li><i class="fas fa-tree"></i><span data-key="sportEntertainment5"></span></li>
-                                    <li><i class="fas fa-mobile-alt"></i><span data-key="sportEntertainment6"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+section {
+    padding: 5rem 0;
+}
 
-                    <!-- Wellness & SPA -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                             <div class="accordion-title-wrapper"><i class="fas fa-spa accordion-icon-title"></i><h3 data-key="wellnessSpaTitle">Wellness & SPA</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p data-key="wellnessSpaSubtitle" class="accordion-text-description"></p>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-water"></i><span data-key="wellnessSpa1"></span></li>
-                                    <li><i class="fas fa-hot-tub"></i><span data-key="wellnessSpa2"></span></li>
-                                    <li><i class="fas fa-dumbbell"></i><span data-key="wellnessSpa3"></span></li>
-                                    <li><i class="fas fa-hand-holding-heart"></i><span data-key="wellnessSpa4"></span></li>
-                                    <li><i class="fas fa-snowflake"></i><span data-key="wellnessSpa5"></span></li>
-                                </ul>
-                                <h4>Godziny otwarcia:</h4>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-clock"></i><span data-key="spaSheptHours"></span></li>
-                                    <li><i class="fas fa-clock"></i><span data-key="poolGymSaunaHours"></span></li>
-                                    <li><i class="fas fa-clock"></i><span data-key="fitnessClasses"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+/* === Nagłówek i Nawigacja === */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(248, 249, 250, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; height: var(--nav-height); }
+.logo { font-size: 1.5rem; text-decoration: none; color: var(--color-dark-blue); font-family: var(--font-secondary); white-space: nowrap; font-weight: 700; }
+.logo-accent { color: var(--color-amber); }
+.header-controls { display: flex; align-items: center; gap: 1.5rem; }
 
-                    <!-- Udogodnienia dla dzieci -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <div class="accordion-title-wrapper"><i class="fas fa-child accordion-icon-title"></i><h3 data-key="kidsAmenitiesTitle">Udogodnienia dla dzieci</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p data-key="kidsAmenitiesSubtitle" class="accordion-text-description"></p>
-                                <ul class="info-list">
-                                    <li><i class="fas fa-gamepad"></i><span data-key="kidsAmenities1"></span></li>
-                                    <li><i class="fas fa-tree"></i><span data-key="kidsAmenities2"></span></li>
-                                    <li><i class="fas fa-theater-masks"></i><span data-key="kidsAmenities3"></span></li>
-                                    <li><i class="fas fa-map-marked-alt"></i><span data-key="kidsAmenities4"></span></li>
-                                    <li><i class="fas fa-flask"></i><span data-key="kidsAmenities5"></span></li>
-                                    <li><i class="fas fa-swimmer"></i><span data-key="kidsAmenities6"></span></li>
-                                    <li><i class="fas fa-baby-carriage"></i><span data-key="kidsAmenities7"></span></li>
-                                    <li><i class="fas fa-chair"></i><span data-key="kidsAmenities8"></span></li>
-                                    <li><i class="fas fa-bed"></i><span data-key="kidsAmenities9"></span></li>
-                                    <li><i class="fas fa-baby"></i><span data-key="kidsAmenities10"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+.language-switcher { display: flex; gap: 0.75rem; }
+.language-switcher img { width: 28px; height: 28px; border-radius: 50%; box-shadow: var(--shadow-sm); cursor: pointer; opacity: 0.6; transition: all 0.3s; object-fit: cover; }
+.language-switcher img:hover { opacity: 1; transform: scale(1.1); }
+.language-switcher img.lang-active { opacity: 1; transform: scale(1.1); box-shadow: 0 0 0 3px var(--color-amber); }
 
-                    <!-- Dodatkowo płatne -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <div class="accordion-title-wrapper"><i class="fas fa-money-bill-wave accordion-icon-title"></i><h3 data-key="additionallyPaidTitle">Dodatkowo płatne</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                           <div class="accordion-content-inner">
-                                <ul class="info-list">
-                                    <li><i class="fas fa-parking"></i><span data-key="infoParking"></span></li>
-                                    <li><i class="fas fa-paw"></i><span data-key="infoPets"></span></li>
-                                    <li><i class="fas fa-baby"></i><span data-key="infoCrib"></span></li>
-                                    <li><i class="fas fa-biking"></i><span data-key="infoBikeRental"></span></li>
-                                    <li><i class="fas fa-charging-station"></i><span data-key="infoEVCharging"></span></li>
-                                    <li><i class="fas fa-money-check-alt"></i><span data-key="infoClimateTax"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+.hamburger-btn { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 24px; cursor: pointer; z-index: 1021; background: none; border: none; }
+.hamburger-btn span { display: block; width: 100%; height: 3px; background-color: var(--color-dark-blue); border-radius: 3px; transition: all 0.3s ease-in-out; transform-origin: center; }
 
-                    <!-- Warto wiedzieć -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <div class="accordion-title-wrapper"><i class="fas fa-info-circle accordion-icon-title"></i><h3 data-key="goodToKnowTitle">Warto wiedzieć</h3></div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <ul class="info-list">
-                                    <li><i class="fas fa-wifi"></i><span data-key="goodToKnowWifi"></span></li>
-                                    <li><i class="fas fa-bed"></i><span data-key="goodToKnowBedding"></span></li>
-                                    <li><i class="fas fa-broom"></i><span data-key="goodToKnowCleaning"></span></li>
-                                    <li><i class="fas fa-clock"></i><span data-key="goodToKnowCheckIn"></span></li>
-                                    <li><i class="fas fa-clock"></i><span data-key="goodToKnowCheckOut"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+.nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 1rem;
+    z-index: 1020;
+}
+.nav-links a { color: var(--color-dark-blue); text-decoration: none; font-size: 1.5rem; font-weight: 600; position: relative; }
+.nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background-color: var(--color-amber); transition: all 0.3s ease; transform: translateX(-50%); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links.is-open { right: 0; }
 
-        <section id="kontakt">
-            <div class="container">
-                <div class="contact-grid">
-                    <div class="location-column">
-                        <h3 data-key="locationTitle">Nasza Lokalizacja</h3>
-                        <p class="location-address">
-                            <b>Kompleks Sea & Forest</b><br>
-                            Ustronie Leśne 13<br>
-                            72-500 Międzyzdroje
-                        </p>
-                        <p data-key="locationDesc">Nasze apartamenty znajdują się w otulinie Wolińskiego Parku Narodowego, zaledwie krótki spacer od plaży.</p>
-                        <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2349.26795539817!2d14.458338376995972!3d53.926983231120246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47aa8b6a32b92ce3%3A0xf22cb0c78fdf2456!2sSea%20%26%20Forest%20Resort%20Mi%C4%99dzyzdroje!5e0!3m2!1spl!2spl!4v1752535310601!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                    <div class="contact-column">
-                        <div class="contact-card">
-                            <h3 data-key="contactTitle">Zarezerwuj Pobyt</h3>
-                            <p data-key="contactDesc">Wybierz Amber lub Azure Suite i zanurz się w luksusie, spokoju i naturze. Czekamy na Twój kontakt.</p>
-                            <div class="contact-buttons">
-                                <a href="mailto:amberazure.residences@gmail.com" class="btn-email"><i class="fas fa-envelope"></i> <span data-key="contactBtnMail">Napisz do nas</span></a>
-                                <a href="tel:+48602229707" class="btn-call"><i class="fas fa-phone"></i> <span data-key="contactBtnCallDarek">Darek: +48 602 229 707</span></a>
-                                <a href="tel:+48606410041" class="btn-call"><i class="fas fa-phone"></i> <span data-key="contactBtnCallBeata">Beata: +48 606 410 041</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <div class="floating-cta">
-        <div class="cta-bubble" id="cta-bubble">
-            <button class="close-bubble" id="close-bubble" aria-label="Close contact bubble">&times;</button>
-            <h4 data-key="ctaTitle">Chcesz zarezerwować pobyt?</h4>
-            <p data-key="ctaDesc">Skontaktuj się z nami bezpośrednio:<br><a href="mailto:amberazure.residences@gmail.com">amberazure.residences@gmail.com</a><br>Darek: <a href="tel:+48602229707">+48 602 229 707</a><br>Beata: <a href="tel:+48606410041">+48 606 410 041</a></p>
-        </div>
-        <button class="cta-button" id="cta-button" aria-label="Open contact bubble">
-            <i class="fas fa-bullhorn"></i>
-        </button>
-    </div>
+.hamburger-btn.is-active span:nth-child(1) { transform: translateY(10.5px) rotate(45deg); }
+.hamburger-btn.is-active span:nth-child(2) { opacity: 0; }
+.hamburger-btn.is-active span:nth-child(3) { transform: translateY(-10.5px) rotate(-45deg); }
 
-    <footer>
-        <div class="container">
-            <span data-key="footerRights">© 2025 Amber & Azure Residences. Wszelkie prawa zastrzeżone.</span> | 
-            <a href="#" class="privacy-link" data-key="footerPrivacy">Polityka Prywatności</a>
-        </div>
-    </footer>
-    
-    <div class="cookie-overlay" id="cookie-overlay"></div>
-    <div class="cookie-consent-popup" id="cookie-consent-popup" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
-        <div class="cookie-content">
-            <div class="cookie-main-content" id="cookie-main">
-                <h3 id="cookie-title" data-key="cookieTitle">Cenimy Twoją prywatność</h3>
-                <p id="cookie-desc" data-key="cookieText">Używamy plików cookie, aby personalizować treści, udostępniać funkcje mediów społecznościowych i analizować nasz ruch. Udostępniamy również informacje o Twoim korzystaniu z naszej witryny naszym partnerom.</p>
-                <div class="cookie-main-buttons">
-                    <button class="cookie-btn-secondary" id="cookie-reject" data-key="cookieDeny">Odrzuć</button>
-                    <button class="cookie-btn-secondary" id="cookie-customize" data-key="cookieCustomize">Dostosuj</button>
-                    <button class="cookie-btn-main" id="cookie-accept" data-key="cookieAccept">Akceptuj wszystkie</button>
-                </div>
-            </div>
-            <div class="cookie-details-content" id="cookie-details">
-                <h4 data-key="cookieDetailsTitle">Dostosuj zgodę</h4>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <strong>Niezbędne</strong>
-                        <label class="switch"><input type="checkbox" checked disabled><span class="slider round"></span></label>
-                    </div>
-                    <p data-key="cookieNecessaryDesc">Te pliki cookie są niezbędne do prawidłowego funkcjonowania strony i nie mogą zostać wyłączone.</p>
-                </div>
-                <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <strong>Analityczne</strong>
-                        <label class="switch"><input type="checkbox" id="cookie-analytics" checked><span class="slider round"></span></label>
-                    </div>
-                    <p data-key="cookieAnalyticsDesc">Te pliki cookie pozwalają nam analizować ruch na stronie i ulepszać jej działanie.</p>
-                </div>
-                 <div class="cookie-category">
-                    <div class="cookie-category-header">
-                        <strong>Marketingowe</strong>
-                        <label class="switch"><input type="checkbox" id="cookie-marketing" checked><span class="slider round"></span></label>
-                    </div>
-                    <p data-key="cookieMarketingDesc">Te pliki cookie pomagają nam dostarczać spersonalizowane reklamy, które mogą Cię zainteresować.</p>
-                </div>
-                <div class="cookie-details-buttons">
-                     <button class="cookie-btn-main" id="cookie-save" data-key="cookieSave">Zapisz ustawienia</button>
-                </div>
-            </div>
-        </div>
-    </div>
+/* === Sekcja Hero === */
+#hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; color: var(--color-white); text-align: center; padding: 0 1rem; overflow: hidden; }
+.hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; z-index: 1; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(18, 28, 34, 0.3) 0%, rgba(18, 28, 34, 0.8) 100%); z-index: 2; }
+.hero-content { position: relative; z-index: 3; animation: fadeInHero 1.5s 0.5s both; }
+@keyframes fadeInHero { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero-content h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; text-shadow: 0px 4px 20px rgba(0,0,0,0.7); color: var(--color-white); }
+.hero-content p { font-size: clamp(1.2rem, 3vw, 1.5rem); max-width: 48rem; margin: 0.5rem auto 0; font-weight: 300; color: var(--color-text-light); text-shadow: 1px 1px 10px rgba(0,0,0,0.6); }
+.hero-cta { display: inline-block; margin-top: 2.5rem; background: linear-gradient(45deg, var(--color-amber), #ffd54f); color: var(--color-dark-blue); font-weight: 700; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1.125rem; text-decoration: none; box-shadow: var(--shadow-lg); transition: all 0.3s; border: none; }
+.hero-cta:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 25px 30px -15px var(--color-amber); }
 
-    <div class="privacy-policy-page" id="privacy-policy-page">
-        <div class="privacy-content-wrapper">
-            <a href="#" class="privacy-close-btn" aria-label="Close privacy policy">×</a>
-            <div class="privacy-content">
-                <h2 data-key="privacyTitle">Polityka Prywatności i Plików Cookies</h2>
-                <p><strong data-key="privacyLastUpdated"></strong></p>
-                
-                <h3 data-key="privacyS1Title"></h3><p data-key="privacyS1P1"></p><p data-key="privacyS1P2"></p>
-                <h3 data-key="privacyS2Title"></h3><p data-key="privacyS2P1"></p><p data-key="privacyS2P2"></p>
-                <ul><li data-key="privacyS2Email"></li><li data-key="privacyS2Phone"></li><li data-key="privacyS2Address"></li></ul>
-                <h3 data-key="privacyS3Title"></h3><p data-key="privacyS3P1"></p>
-                <div class="privacy-subsection">
-                    <h4 data-key="privacyS3S1Title"></h4><p data-key="privacyS3S1P1"></p><p data-key="privacyS3S1P2"></p><p data-key="privacyS3S1P3"></p><p data-key="privacyS3S1P4"></p>
-                </div>
-                <div class="privacy-subsection">
-                    <h4 data-key="privacyS3S2Title"></h4><p data-key="privacyS3S2P1"></p><p data-key="privacyS3S2P2"></p><p data-key="privacyS3S2P3"></p><p data-key="privacyS3S2P4"></p><p data-key="privacyS3S2P5"></p>
-                </div>
-                <h3 data-key="privacyS4Title"></h3><p data-key="privacyS4P1"></p><p data-key="privacyS4P2"></p>
-                <ul><li data-key="privacyS4R1"></li><li data-key="privacyS4R2"></li><li data-key="privacyS4R3"></li></ul><p data-key="privacyS4P3"></p>
-                <h3 data-key="privacyS5Title"></h3><p data-key="privacyS5P1"></p>
-                <ul><li data-key="privacyS5R1"></li><li data-key="privacyS5R2"></li><li data-key="privacyS5R3"></li><li data-key="privacyS5R4"></li><li data-key="privacyS5R5"></li><li data-key="privacyS5R6"></li><li data-key="privacyS5R7"></li><li data-key="privacyS5R8"></li></ul><p data-key="privacyS5P2"></p>
-                <h3 data-key="privacyS6Title"></h3><p data-key="privacyS6P1"></p><p data-key="privacyS6P2"></p><p data-key="privacyS6P3"></p><p data-key="privacyS6P4"></p><p data-key="privacyS6P5"></p>
-                <h3 data-key="privacyS7Title"></h3><p data-key="privacyS7P1"></p><p data-key="privacyS7P2"></p>
-                <h3 data-key="privacyS8Title"></h3><p data-key="privacyS8P1"></p><p data-key="privacyS8P2"></p><p data-key="privacyS8P3"></p>
-            </div>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
-</body>
-</html>
+/* --- Sekcja Filozofii --- */
+#filozofia .intro-box { max-width: 900px; margin: 0 auto; text-align: center; }
+#filozofia .intro-text { margin-top: 2.5rem; font-size: 1.1rem; line-height: 1.8; color: var(--color-text-medium); }
+
+/* --- Sekcja Apartamentów & Galeria --- */
+#apartamenty { background-color: var(--color-light-bg); }
+.suite-showcase { margin-bottom: 6rem; }
+.suite-showcase:last-of-type { margin-bottom: 0; }
+.suite-header { text-align: center; margin-bottom: 1rem; }
+.suite-title { font-size: clamp(2.25rem, 5vw, 3rem); margin-bottom: 1rem; }
+#amber-suite .suite-title { color: var(--color-amber); }
+#azure-suite .suite-title { color: var(--color-azure); }
+.suite-main-description { text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto; color: var(--color-text-medium); font-size: 1.1rem; }
+.suite-body { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+@media (min-width: 992px) { .suite-body { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+
+.gallery-container { width: 100%; overflow: hidden; }
+.gallery-main-image { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; box-shadow: var(--shadow-md); }
+.gallery-main-image img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease-in-out; }
+.thumbnail-scroll-wrapper { position: relative; }
+.thumbnail-scroll-container { 
+    display: flex; 
+    gap: 0.75rem; 
+    overflow-x: auto; 
+    scroll-behavior: smooth; 
+    padding: 0.5rem 0; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+.thumbnail-scroll-container.grabbing { cursor: grabbing; }
+.thumbnail-scroll-container::-webkit-scrollbar { display: none; }
+.thumbnail-item { 
+    flex: 0 0 auto; 
+    width: 100px; 
+    height: 75px; 
+    border-radius: 0.5rem; 
+    overflow: hidden; 
+    border: 3px solid transparent; 
+    transition: border-color 0.3s ease, opacity 0.3s ease; 
+    opacity: 0.6; 
+}
+.thumbnail-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.thumbnail-item:hover { opacity: 1; }
+.thumbnail-item.active-thumb { border-color: var(--color-azure); opacity: 1; }
+.scroll-arrow { 
+    background-color: rgba(255, 255, 255, 0.8); 
+    border: 1px solid #ddd; 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.5rem; 
+    color: var(--color-dark-blue); 
+    box-shadow: var(--shadow-sm); 
+    transition: all 0.2s; 
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; 
+}
+@media (min-width: 992px) {
+    .scroll-arrow { display: flex; }
+    .thumbnail-scroll-wrapper { padding: 0 2.5rem; }
+}
+.scroll-arrow:hover { background-color: var(--color-white); transform: translateY(-50%) scale(1.1); }
+.scroll-arrow.left { left: 0; }
+.scroll-arrow.right { right: 0; }
+
+.suite-content { padding-top: 0; }
+.suite-details-list { list-style: none; padding: 0; }
+.suite-details-list li { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+.suite-details-list li i { font-size: 1.2rem; margin-top: 0.25rem; width: 20px; text-align: center; color: var(--color-azure); }
+
+.amber-soon-available { background-color: #fff8e1; border: 1px solid var(--color-amber); border-radius: var(--radius); padding: 2rem; }
+.amber-soon-content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; }
+.amber-soon-content p { font-size: 1.1rem; color: var(--color-dark-blue); line-height: 1.8; max-width: 700px; margin: 0 auto 1.5rem auto; }
+
+.btn-amber-contact {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: var(--color-amber);
+    color: var(--color-dark-blue);
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-amber);
+}
+
+.btn-amber-contact:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    background-color: #ffca28; /* Slightly lighter amber */
+}
+
+
+/* --- Sekcja Udogodnienia (Akordeon) --- */
+#udogodnienia { background-color: var(--color-white); }
+.accordion-container { max-width: 900px; margin: 2rem auto 0 auto; border: 1px solid #e0e0e0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+.accordion-item { border-bottom: 1px solid #e0e0e0; }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-header { background-color: var(--color-white); color: var(--color-dark-blue); cursor: pointer; padding: 1.5rem 2rem; width: 100%; border: none; text-align: left; outline: none; font-size: 1.25rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; transition: background-color 0.3s ease; }
+.accordion-header:hover { background-color: var(--color-light-bg); }
+.accordion-title-wrapper { display: flex; align-items: center; gap: 1rem; }
+.accordion-header h3 { margin: 0; font-size: 1.25rem; font-family: var(--font-primary); font-weight: 600; }
+.accordion-icon-title { font-size: 1.5rem; color: var(--color-azure); }
+.accordion-icon { transition: transform 0.3s ease; }
+.accordion-item.active .accordion-header { color: var(--color-azure); }
+.accordion-item.active .accordion-icon { transform: rotate(180deg); }
+.accordion-content { padding: 0 2rem; background-color: var(--color-white); max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; }
+.accordion-content-inner { padding: 1.5rem 0; }
+.accordion-item.active .accordion-content { max-height: 1000px; /* Large enough value */ }
+.accordion-text-description { padding-bottom: 1rem; color: var(--color-text-medium); font-size: 1rem; line-height: 1.6; }
+.accordion-content h4 { font-family: var(--font-primary); font-weight: 700; margin-top: 1.5rem; margin-bottom: 1rem; color: var(--color-dark-blue); border-left: 3px solid var(--color-amber); padding-left: 1rem; }
+.accordion-content .info-list { list-style: none; padding: 0; }
+.accordion-content .info-list li { display: flex; align-items: flex-start; margin-bottom: 0.75rem; font-size: 1rem; color: var(--color-text-medium); }
+.accordion-content .info-list li i { flex-shrink: 0; margin-right: 1rem; font-size: 1.1rem; margin-top: 0.2rem; width: 20px; text-align: center; color: var(--color-azure); }
+
+/* --- Sekcja Kontakt --- */
+#kontakt { background-color: var(--color-dark-blue); color: var(--color-white); }
+#kontakt h3, #kontakt h2 { color: var(--color-white); }
+.contact-grid { margin-top: 4rem; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: stretch; }
+@media (min-width: 992px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+.location-column, .contact-column { display: flex; flex-direction: column; }
+.location-column p, .contact-column p { color: var(--color-text-light); margin-bottom: 1.5rem; }
+.map-container { flex-grow: 1; border-radius: var(--radius); overflow: hidden; min-height: 400px; }
+.map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(90%); transition: filter 0.4s ease; }
+.map-container iframe:hover { filter: grayscale(0) invert(0); }
+.contact-card { background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1)); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: var(--radius); height: 100%; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.contact-buttons { display: flex; flex-direction: column; gap: 1rem; }
+.contact-buttons a { display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; text-align: center; font-weight: 700; padding: 0.8rem 1.5rem; border-radius: var(--radius); text-decoration: none; transition: all 0.3s; }
+.contact-buttons .btn-call { background-color: var(--color-amber); color: var(--color-dark-blue); }
+.contact-buttons .btn-call:hover { background-color: #fff; color: var(--color-dark-blue); }
+.contact-buttons .btn-email { background-color: transparent; color: var(--color-white); border: 1px solid var(--color-white); }
+.contact-buttons .btn-email:hover { background-color: var(--color-white); color: var(--color-dark-blue); }
+
+/* --- Stopka --- */
+footer { background-color: var(--color-dark-blue); color: var(--color-text-medium); padding: 2rem 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+footer .privacy-link { color: var(--color-amber); text-decoration: none; }
+footer .privacy-link:hover { text-decoration: underline; }
+
+/* --- Pływający przycisk CTA --- */
+.floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 1010; }
+.cta-button { width: 60px; height: 60px; border-radius: 50%; background-color: var(--color-azure); color: var(--color-white); border: none; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); cursor: pointer; transition: transform 0.3s ease; }
+.cta-button:hover { transform: scale(1.1); }
+.cta-bubble { position: absolute; bottom: 75px; right: 0; width: 280px; background-color: rgba(18, 28, 34, 0.95); color: var(--color-white); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.cta-bubble.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.cta-bubble h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--color-white); }
+.cta-bubble p { font-size: 0.95rem; color: var(--color-text-light); line-height: 1.6; word-break: break-word; }
+.cta-bubble a { color: var(--color-amber); font-weight: 600; }
+.close-bubble { position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.5rem; color: var(--color-text-light); cursor: pointer; }
+
+/* --- Monit Cookie --- */
+.cookie-overlay { display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1999; backdrop-filter: blur(5px); }
+.cookie-overlay.active { display: block; }
+.cookie-consent-popup { display: none; position: fixed; bottom: 1rem; left: 1rem; right: 1rem; transform: translateY(150%); width: auto; max-width: 800px; margin: 0 auto; background-color: var(--color-white); color: var(--color-dark-blue); border-radius: var(--radius); box-shadow: var(--shadow-lg); z-index: 2000; transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.cookie-consent-popup.active { display: block; transform: translateY(0); }
+@media (min-width: 830px) { .cookie-consent-popup { bottom: 2rem; left: 2rem; right: auto; } }
+.cookie-content { padding: 2rem; }
+.cookie-consent-popup h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.cookie-consent-popup p { font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; color: var(--color-text-medium); }
+.cookie-main-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+.cookie-btn-main, .cookie-btn-secondary { padding: 0.8rem 1.5rem; border: 2px solid #e5e7eb; background: #e5e7eb; border-radius: 0.375rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; }
+.cookie-btn-main { background-color: var(--color-azure); color: var(--color-white); border-color: var(--color-azure); }
+.cookie-btn-main:hover { background-color: #0056b3; border-color: #0056b3; }
+.cookie-btn-secondary:hover { background-color: #d1d5db; border-color: #d1d5db; }
+.cookie-details-content { display: none; }
+.cookie-details-content h4 { font-size: 1.25rem; margin-bottom: 1rem; border-top: 1px solid #e5e7eb; padding-top: 1.5rem; }
+.cookie-category { border-bottom: 1px solid #e5e7eb; padding: 1.25rem 0; }
+.cookie-category:last-of-type { border-bottom: none; }
+.cookie-category-header { display: flex; justify-content: space-between; align-items: center; }
+.cookie-category p { font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 0; }
+.cookie-details-buttons { margin-top: 2rem; display: flex; justify-content: flex-end; }
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--color-azure); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- Strona Polityki Prywatności --- */
+.privacy-policy-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-light-bg); z-index: 3000; overflow-y: auto; color: var(--color-dark-blue); opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; }
+.privacy-policy-page.is-visible { opacity: 1; visibility: visible; }
+.privacy-content-wrapper { max-width: 800px; margin: 0 auto; padding: 6rem 1.5rem; }
+.privacy-close-btn { position: fixed; top: 1.5rem; right: 2rem; font-size: 3rem; color: var(--color-dark-blue); text-decoration: none; font-weight: 300; z-index: 3001; }
+.privacy-content h2, .privacy-content h3, .privacy-content h4 { text-align: left; }
+.privacy-content h3 { margin-top: 2rem; margin-bottom: 1rem; }
+.privacy-content h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-primary); }
+.privacy-content ul { padding-left: 2rem; margin-top: 1rem; }
+
+/* --- POPRAWKI MOBILNE --- */
+@media (max-width: 767px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    .nav-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+    section { padding: 3rem 0; }
+    .logo { font-size: 1.1rem; }
+    .header-controls { gap: 1rem; }
+    .language-switcher img { width: 24px; height: 24px; }
+    .suite-body { grid-template-columns: 1fr; }
+    .floating-cta { bottom: 1rem; right: 1rem; }
+    .cta-bubble { max-width: calc(100vw - 2rem); right: 0; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .privacy-content-wrapper { padding: 5rem 1rem; }
+    .privacy-close-btn { top: 1rem; right: 1rem; }
+}
